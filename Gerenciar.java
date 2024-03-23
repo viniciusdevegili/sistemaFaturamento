@@ -5,6 +5,7 @@ public class Gerenciar {
         Scanner sc = new Scanner(System.in);
 
         int op;
+        String nomeItem = "";
 
         System.out.println("Escolha a opção desejada: ");
         System.out.println(" 1  - Adicionar novo item");
@@ -17,7 +18,21 @@ public class Gerenciar {
         switch (op) {
             case 1:
                 System.out.println("Digite o nome do novo item: ");
-                String item = sc.nextLine();
+                sc.nextLine();
+                nomeItem = sc.nextLine();
+
+                System.out.println("Digite a quantidade do novo item: ");
+                int quantidade = sc.nextInt();
+
+                System.out.println("Digite o valor do novo item: ");
+                double valor = sc.nextDouble();
+
+                Item novoItem = new Item(nomeItem, quantidade, valor);
+
+                System.out.println("Nome do novo item: " + novoItem.getNomeItem());
+                System.out.println("Quantidade do novo item: " + novoItem.getQuantidade());
+                System.out.println("Valor do novo item: " + novoItem.getValor());
+
                 break;
 
             case 2:
