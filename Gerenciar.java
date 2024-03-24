@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Gerenciar {
     public static void main(String[] args) {
+        List<Item> listaItens = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
 
         int op;
@@ -17,8 +20,8 @@ public class Gerenciar {
 
         switch (op) {
             case 1:
+                sc.nextLine(); // Limpar o buffer do scanner
                 System.out.println("Digite o nome do novo item: ");
-                sc.nextLine();
                 nomeItem = sc.nextLine();
 
                 System.out.println("Digite a quantidade do novo item: ");
@@ -27,16 +30,37 @@ public class Gerenciar {
                 System.out.println("Digite o valor do novo item: ");
                 double valor = sc.nextDouble();
 
+                // Criar um novo item e adicioná-lo à lista de itens
                 Item novoItem = new Item(nomeItem, quantidade, valor);
+                listaItens.add(novoItem);
 
-                System.out.println("Nome do novo item: " + novoItem.getNomeItem());
-                System.out.println("Quantidade do novo item: " + novoItem.getQuantidade());
-                System.out.println("Valor do novo item: " + novoItem.getValor());
-
+                System.out.println("Item adicionado com sucesso!");
                 break;
 
             case 2:
+                System.out.println("Digite o nome do item que deseja alterar a quantidade: ");
+                sc.nextLine();
+                String nomeItemAlterar = sc.nextLine();
 
+                boolean itemEncontrado = false;
+                for (Item item : listaItens) {
+                    if (item.getNomeItem().equalsIgnoreCase(nomeItemAlterar)) {
+                        itemEncontrado = true;
+
+                        System.out.println("Digite a nova quantidade para o item '" + nomeItemAlterar + "': ");
+                        int novaQuantidade = sc.nextInt();
+
+                        item.setQuantidade(novaQuantidade);
+
+                        System.out.println(
+                                "Quantidade do item '" + nomeItemAlterar + "' alterada para " + novaQuantidade);
+                        break;
+                    }
+                }
+
+                if (!itemEncontrado) {
+                    System.out.println("Item não encontrado.");
+                }
                 break;
 
             case 3:
