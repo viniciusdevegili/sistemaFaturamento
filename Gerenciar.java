@@ -64,9 +64,29 @@ public class Gerenciar {
                 break;
 
             case 3:
+                System.out.println("Digite o nome do item que deseja alterar o valor: ");
+                sc.nextLine();
+                String nomeItemAlterarValor = sc.nextLine();
 
+                boolean itemEncontradoValor = false;
+                for (Item item : listaItens) {
+                    if (item.getNomeItem().equalsIgnoreCase(nomeItemAlterarValor)) {
+                        itemEncontradoValor = true;
+
+                        System.out.println("Digite o novo valor para o item '" + nomeItemAlterarValor + "': ");
+                        double novoValor = sc.nextDouble();
+
+                        item.setValor(novoValor);
+
+                        System.out.println("Valor do item '" + nomeItemAlterarValor + "' alterado para " + novoValor);
+                        break;
+                    }
+                }
+
+                if (!itemEncontradoValor) {
+                    System.out.println("Item não encontrado.");
+                }
                 break;
-
             case 4:
 
                 break;
